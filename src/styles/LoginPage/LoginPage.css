@@ -1,0 +1,64 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    background: rgb(90,91,230);
+    background: linear-gradient(180deg, rgba(90,91,230,1) 0%, rgba(42,46,254,1) 100%);
+}
+
+.login-form-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    font-size: 13px;
+}
+
+.login-form {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 150px 200px 30px 200px;
+    border-radius: 40px;
+}
+
+.logo-image {
+    width: 170px;
+    margin-bottom: 80px;
+}
+
+.input-field {
+    width: 350px;
+    height: 40px;
+    padding: 7px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    outline: none;
+    font-size: 13px;
+    background-color: #f7f7f8;
+}
+
+.recovery-password-link {
+    margin-left: auto;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.form-button {
+    width: 362px;
+    height: 50px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 13px;
+    background-color: #f7f7f8;
+}
+
+.signup-link {
+    margin-top: 100px;
+    text-decoration: none;
+    color: #5e5fee;
+}
