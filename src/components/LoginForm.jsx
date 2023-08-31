@@ -32,7 +32,7 @@ function LoginForm() {
             placeholder="Пароль"
             className='login-input-field'
         />
-        {errors.email || errors.password && <p>Поля не должны быть пустыми</p>}
+        {errors.email && errors.password && <p>Поля не должны быть пустыми</p>}
         <Link to="/password-recovery" className='recovery-password-link'>Забыли пароль?</Link>
         <button type="submit" className='form-button' disabled={isDisabled}>Войти</button>
         <Link to="/signup" className='signup-link'>Начать пользоваться</Link>

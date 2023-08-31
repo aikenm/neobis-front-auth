@@ -48,6 +48,12 @@ html, body {
     margin-top: 10px;
     text-decoration: none;
     color: black;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.recovery-password-link:hover {
+    color: #5e5fee;
 }
 
 .form-button {
@@ -56,19 +62,27 @@ html, body {
     border: none;
     border-radius: 10px;
     font-size: 13px;
+    font-weight: 700;
     background-color: #3739f9;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white;
+    transition: all 0.3s ease;
+    color: #fff;
 }
 
 .form-button:disabled {
-    background-color: #97999c; /* Disabled color */
-    cursor: not-allowed;
+    background-color: #f7f7f8;
+    cursor: default;
+    color: #9da3ab;
 }
 
 .signup-link {
     margin-top: 100px;
     text-decoration: none;
     color: #5e5fee;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.signup-link:hover {
+    color: #323384;
 }

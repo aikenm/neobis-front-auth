@@ -35,7 +35,19 @@
 }
 
 .back-button {
+    background-color: #f7f7f8;
+    padding: 5px 17px 4px 17px;
     position: absolute;
-    margin-right: 600px;
-    margin-bottom: 650px;
+    margin-right: 640px;
+    margin-bottom: 620px;
+    border-radius: 20px;
+    transition: 0.3s all ease;
+}
+
+.back-button:hover {
+    background-color: lightgrey;
+}
+
+.arrow-icon {
+    width: 25px;
 }

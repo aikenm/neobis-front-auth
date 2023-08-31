@@ -1,12 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import '../../styles/SignupPage/SignupPage.css';
+import '../../styles/SignupPage/SignupPage.css'; 
 import logo from '../../images/logo.png';
-// Assuming you have an arrow icon for back navigation
+import arrow from "../../images/arrow.png"
 
 function SignupEmailForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const emailValue = watch('email');  
 
   const onSubmit = (data) => {
     console.log(data);
@@ -15,7 +16,7 @@ function SignupEmailForm() {
   return (
     <div className='signup-email-form-wrapper'>
         <Link to="/" className='back-button'>
-            <img src="" alt="Back to login" />
+            <img src={arrow} alt="Back to login" className='arrow-icon'/>
         </Link>
         <form onSubmit={handleSubmit(onSubmit)} className='signup-email-form'>
         <img src={logo} alt="" className='logo-image'/>
@@ -34,7 +35,7 @@ function SignupEmailForm() {
         />
         {errors.email && <p className='error-message'>{errors.email.message}</p>}
         
-        <button type="submit" className='form-button' disabled={errors.email}>Далее</button>
+        <button type="submit" className='form-button' disabled={!emailValue}>Далее</button>
         </form>
     </div>
   );
