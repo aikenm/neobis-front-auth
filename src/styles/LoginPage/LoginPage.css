@@ -31,7 +31,7 @@ html, body {
 }
 
 .login-input-field {
-    width: 300px;
+    width: 303px;
     height: 40px;
     padding: 7px;
     margin-top: 20px;
@@ -65,7 +65,7 @@ html, body {
     font-weight: 700;
     background-color: #5e5fee;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease color 0.3s ease;
     color: #fff;
 }
 

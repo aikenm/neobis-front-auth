@@ -17,8 +17,7 @@ function SignupPage() {
     const [step, setStep] = useState('personalInfo');
 
     useEffect(() => {
-        // Verify token with the server, if needed. 
-        // If it's invalid, redirect the user or set the state back to 'email'
+        // TODO
     }, [token]);
 
     return (

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import '../styles/LoginPage/LoginPage.css';
 import logo from '../images/logo.png';
+import eyeOpen from '../images/eye-open.png';
+import eyeClosed from '../images/eye-closed.png';
 
 function LoginForm() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -10,8 +12,16 @@ function LoginForm() {
   const watchedEmail = watch('email', '');
   const watchedPassword = watch('password', '');
 
+  const [passwordVisible, setPasswordVisible] = useState(true);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(prevVisible => !prevVisible);
+  };
+
   const onSubmit = (data) => {
     console.log(data);
+
+    // TODO
   };
 
   const isDisabled = !watchedEmail || !watchedPassword || errors.email || errors.password;
@@ -26,12 +36,20 @@ function LoginForm() {
             placeholder="Электронная почта"
             className='login-input-field'
         />
-        <input
-            {...register('password', { required: true })}
-            type="password"
-            placeholder="Пароль"
-            className='login-input-field'
-        />
+        <div className="password-input-wrapper">
+          <input
+              {...register('password', { required: true })}
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Пароль"
+              className='password-input-field'
+          />
+          <img 
+                  onClick={togglePasswordVisibility} 
+                  src={passwordVisible ? eyeOpen : eyeClosed} 
+                  alt="Toggle Password" 
+                  className="toggle-password-visibility"
+          />
+        </div>
         {errors.email && errors.password && <p>Поля не должны быть пустыми</p>}
         <Link to="/password-recovery" className='recovery-password-link'>Забыли пароль?</Link>
         <button type="submit" className='form-button' disabled={isDisabled}>Войти</button>

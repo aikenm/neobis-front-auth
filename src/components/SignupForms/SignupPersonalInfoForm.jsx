@@ -22,6 +22,8 @@ function SignupPersonalInfo({ onNext }) {
         if (typeof onNext === 'function') {
             onNext(data);
         }
+
+        console.log(data);
     };
 
     return (
