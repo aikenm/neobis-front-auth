@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import '../../styles/SignupPage/SignupPage.css'; 
+import '../../styles/SignupPage/SignupEmailForm.css'; 
 import logo from '../../images/logo.png';
 import arrow from "../../images/arrow.png"
 import ModalMessage from '../ModalMessage';

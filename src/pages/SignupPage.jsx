@@ -1,20 +1,16 @@
-import React from 'react';
-//import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import SignupEmailForm from '../components/SignupForms/SignupEmailForm';
 import SignupPersonalInfoForm from '../components/SignupForms/SignupPersonalInfoForm';
-
-// function useQuery() {
-//     return new URLSearchParams(useLocation().search);
-// }
+import SignupPasswordForm from '../components/SignupForms/SignupPasswordForm'; 
 
 function SignupPage() {
-    //const query = useQuery();
-    // const step = query.get("step");
-    const step = "personalInfo";
+    const [step, setStep] = useState('password');
 
     return (
         <div>
-            {step === 'personalInfo' ? <SignupPersonalInfoForm /> : <SignupEmailForm />}
+            {step === 'email' && <SignupEmailForm onNext={() => setStep('personalInfo')} />}
+            {step === 'personalInfo' && <SignupPersonalInfoForm onNext={() => setStep('password')} />}
+            {step === 'password' && <SignupPasswordForm />}
         </div>
     );
 }

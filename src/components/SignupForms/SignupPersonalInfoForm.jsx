@@ -1,13 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import '../../styles/SignupPage/SignupPage.css';
+import '../../styles/SignupPage/SignupPersonalInfoForm.css';
 import logo from '../../images/logo.png';
 
-function SignupPersonalInfo() {
+function SignupPersonalInfo({ onNext }) {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
         const email = localStorage.getItem('signupEmail');
         if(!email) {
             console.error('Email not found!');
@@ -19,7 +17,11 @@ function SignupPersonalInfo() {
             ...data
         };
 
-        console.log(userData);
+        localStorage.setItem('signupInfo', JSON.stringify(userData));
+
+        if (typeof onNext === 'function') {
+            onNext(data);
+        }
     };
 
     return (
@@ -76,7 +78,7 @@ function SignupPersonalInfo() {
                     className='form-button' 
                     disabled={errors.name || errors.surname || errors.dob || errors.phoneNumber}
                 >
-                    Зарегистрироваться
+                    Далее
                 </button>
             </form>
         </div>

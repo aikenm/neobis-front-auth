@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import '../../styles/SignupPage/SignupPage.css'; 
+import '../../styles/PasswordRecoveryPage/RecoveryEmailForm.css'; 
 import logo from '../../images/logo.png';
 import arrow from '../../images/arrow.png'
 import ModalMessage from '../ModalMessage';
@@ -17,13 +17,13 @@ function RecoveryEmailForm() {
   };
 
   return (
-    <div className='signup-email-form-wrapper'>
+    <div className='recovery-email-form-wrapper'>
         <Link to="/" className='back-button'>
             <img src={arrow} alt="Back to login" className='arrow-icon'/>
         </Link>
-        <form onSubmit={handleSubmit(onSubmit)} className='signup-email-form'>
+        <form onSubmit={handleSubmit(onSubmit)} className='recovery-email-form'>
         <img src={logo} alt="" className='logo-image'/>
-        <h2 className='signup-title'>Восстановление пароля</h2>
+        <h2 className='recovery-title'>Восстановление пароля</h2>
         <input
             {...register('email', {
               required: "Введите электронную почту",
