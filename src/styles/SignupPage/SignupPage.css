@@ -17,18 +17,18 @@
 }
 
 .logo-image {
-    width: 170px;
+    width: 130px;
     margin-bottom: 30px;
 }
 
 .email-input-field {
-    width: 350px;
+    width: 300px;
     height: 40px;
     padding: 7px;
     margin-top: 20px;
     margin-bottom: 35px;
+    border: 1px solid transparent;
     border-radius: 10px;
-    border: none;
     outline: none;
     font-size: 13px;
     background-color: #f7f7f8;
@@ -38,8 +38,8 @@
     background-color: #f7f7f8;
     padding: 5px 17px 4px 17px;
     position: absolute;
-    margin-right: 640px;
-    margin-bottom: 620px;
+    margin-right: 580px;
+    margin-bottom: 570px;
     border-radius: 20px;
     transition: 0.3s all ease;
 }
@@ -49,5 +49,51 @@
 }
 
 .arrow-icon {
-    width: 25px;
+    width: 20px;
+}
+
+.signup-personal-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+    font-size: 13px;
+}
+
+.signup-personal-form {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 200px 57px 200px;
+    border-radius: 40px;
+}
+
+.personal-logo-image {
+    width: 130px;
+    margin-bottom: 10px;
+}
+
+.personal-input-field {
+    width: 300px;
+    height: 40px;
+    padding: 7px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    background-color: #f7f7f8;
+}
+
+.error-message {
+    margin-top: -15px;
+    font-size: 12px;
+    color: red;
+}
+
+.error-border {
+    border: 1px solid red;
+    color: red; 
 }

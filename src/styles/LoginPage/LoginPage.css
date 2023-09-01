@@ -26,17 +26,17 @@ html, body {
 }
 
 .logo-image {
-    width: 170px;
+    width: 130px;
     margin-bottom: 80px;
 }
 
 .login-input-field {
-    width: 350px;
+    width: 300px;
     height: 40px;
     padding: 7px;
     margin-top: 20px;
     border-radius: 10px;
-    border: none;
+    border: 1px solid transparent;
     outline: none;
     font-size: 13px;
     background-color: #f7f7f8;
@@ -53,20 +53,24 @@ html, body {
 }
 
 .recovery-password-link:hover {
-    color: #5e5fee;
+    color: #4a4c4c;
 }
 
 .form-button {
-    width: 362px;
+    width: 315px;
     height: 60px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 10px;
     font-size: 13px;
     font-weight: 700;
-    background-color: #3739f9;
+    background-color: #5e5fee;
     cursor: pointer;
     transition: all 0.3s ease;
     color: #fff;
+}
+
+.form-button:hover {
+    background-color: #3e40a5;
 }
 
 .form-button:disabled {
