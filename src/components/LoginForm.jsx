@@ -1,68 +1,69 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import '../styles/LoginPage/LoginPage.css';
-import logo from '../images/logo.png';
+import '../styles/image_block.css';
+import '../styles/forms.css';
+import '../styles/core.css';
+import logo from '../images/logo.jpg';
 import eyeOpen from '../images/eye-open.png';
 import eyeClosed from '../images/eye-closed.png';
 
 function LoginForm() {
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const watchedEmail = watch('email', '');
-  const watchedPassword = watch('password', '');
+    const watchedLogin = watch('login', ''); 
+    const watchedPassword = watch('password', '');
 
-  const [passwordVisible, setPasswordVisible] = useState(true);
+    const [passwordVisible, setPasswordVisible] = useState(true);
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(prevVisible => !prevVisible);
-  };
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(prevVisible => !prevVisible);
+    };
 
-  const onSubmit = (data) => {
-    console.log(data);
+    const onSubmit = (data) => {
+        console.log(data);
+        // TODO
+    };
 
-    // TODO
-  };
+    const isDisabled = !watchedLogin || !watchedPassword || errors.login || errors.password;
 
-  const isDisabled = !watchedEmail || !watchedPassword || errors.email || errors.password;
-
-  return (
-    <div className='main'>
-      <div className='image-block-wrapper'>
-        <img src={logo} alt="" className='logo-image'/>
-        <h1 className='image-block-title'>Lordby</h1>
-        <h3 className='image-block-subtitle'>Твой личный репетитор</h3>
-      </div>
-      <div className='login-form-wrapper'>
-          <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
-          <h3 className='form-title'>Вэлком бэк!</h3>
-          <input
-              {...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i })}
-              type="email"
-              placeholder="Электронная почта"
-              className='login-input-field'
-          />
-          <div className="password-input-wrapper">
-            <input
-                {...register('password', { required: true })}
-                type={passwordVisible ? "text" : "password"}
-                placeholder="Пароль"
-                className='password-input-field'
-            />
-            <img 
-                    onClick={togglePasswordVisibility} 
-                    src={passwordVisible ? eyeOpen : eyeClosed} 
-                    alt="Toggle Password" 
-                    className="toggle-password-visibility"
-            />
-          </div>
-          {errors.email && errors.password && <p>Поля не должны быть пустыми</p>}
-          <button type="submit" className='form-button' disabled={isDisabled}>Войти</button>
-          <Link to="/signup" className='signup-link'>Начать пользоваться</Link>
-          </form>
-      </div>
-    </div>
-  );
+    return (
+        <div className='main'>
+            <div className='image-block-wrapper'>
+                <img src={logo} alt="" className='logo-image' />
+                <h1 className='image-block-title'>Lordby</h1>
+                <h3 className='image-block-subtitle'>Твой личный репетитор</h3>
+            </div>
+            <div className='login-form-wrapper'>
+                <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
+                    <h3 className='form-title'>Вэлком бэк!</h3>
+                    <input
+                        {...register('login', { required: true })} // Here, instead of email, it's "login"
+                        type="text" // Changed from "email" to "text"
+                        placeholder="Введи туда-сюда логин"
+                        className='input-field'
+                    />
+                    <div className="password-input-wrapper">
+                        <input
+                            {...register('password', { required: true })}
+                            type={passwordVisible ? "text" : "password"}
+                            placeholder="Пароль (тоже введи)"
+                            className='password-input-field'
+                        />
+                        <img
+                            onClick={togglePasswordVisibility}
+                            src={passwordVisible ? eyeOpen : eyeClosed}
+                            alt="Toggle Password"
+                            className="toggle-password-visibility"
+                        />
+                    </div>
+                    {errors.login && errors.password && <p>Поля не должны быть пустыми</p>}
+                    <button type="submit" className='login-form-button form-button' disabled={isDisabled}>Войти</button>
+                    <Link to="/signup" className='signup-link'>У меня еще нет аккаунта</Link>
+                </form>
+            </div>
+        </div>
+    );
 }
 
 export default LoginForm;

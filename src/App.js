@@ -1,18 +1,18 @@
-import React, { useState} from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
-import SignupPersonalInfo from './components/SignupForms/SignupPersonalInfoForm';
+import ProfilePage from './pages/ProfilePage';
+import SignupConfirmationForm from './components/SignupConfirmationForm';
 
 const App = () => {
-  const [showSignupSuccess, setShowSignupSuccess] = useState(false);
-
   return (
     <BrowserRouter>
         <Routes>
           <Route path="/" element={ <LoginPage/>} />
           <Route path="/signup" element={<SignupPage/>} />
-          <Route path="/signup-personal-info" element={<SignupPersonalInfo/>} />
+          <Route path="/confirmation" element={<SignupConfirmationForm/>} />
+          <Route path="/profile" element={<ProfilePage/>} />
         </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,25 @@
+.image-block-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding-left: 70px;
+    align-items: center;  
+    justify-content: center; 
+    flex-direction: column;
+}
+
+.logo-image {
+    width: 28vw;
+}
+
+.image-block-title {
+    margin: 0;
+    margin-top: 30px;
+    font-size: 48px;
+}
+
+.image-block-subtitle {
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 5px;
+}

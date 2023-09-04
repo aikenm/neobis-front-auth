@@ -1,5 +1,5 @@
 import '../styles/ModalMessage.css';
-import logo from '../images/logo.png';
+import logo from '../images/logo.jpg';
 
 function ModalMessage({ email, onClose }) {
     return (
