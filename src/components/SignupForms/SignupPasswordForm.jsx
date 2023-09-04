@@ -52,7 +52,7 @@ function SignupPasswordForm() {
 
   return (
     <div className='password-form-wrapper'>
-        <Link to="/" className='back-button'>
+        <Link to="/signup-personal-info" className='back-button'>
             <img src={arrow} alt="Back to personal info" className='arrow-icon'/>
         </Link>
         <form onSubmit={handleSubmit(onSubmit)} className='password-form'>

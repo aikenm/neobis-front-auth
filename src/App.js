@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
-import PasswordRecoveryPage from './pages/PasswordRecoveryPage';
 import SignupPage from './pages/SignupPage';
+import SignupPersonalInfo from './components/SignupForms/SignupPersonalInfoForm';
 
 const App = () => {
   const [showSignupSuccess, setShowSignupSuccess] = useState(false);
@@ -10,9 +10,9 @@ const App = () => {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/signup" element={<SignupPage/>} />
-          <Route path="/password-recovery" element={<PasswordRecoveryPage/>} />
           <Route path="/" element={ <LoginPage/>} />
+          <Route path="/signup" element={<SignupPage/>} />
+          <Route path="/signup-personal-info" element={<SignupPersonalInfo/>} />
         </Routes>
     </BrowserRouter>
   );

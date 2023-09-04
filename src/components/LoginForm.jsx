@@ -27,34 +27,40 @@ function LoginForm() {
   const isDisabled = !watchedEmail || !watchedPassword || errors.email || errors.password;
 
   return (
-    <div className='login-form-wrapper'>
-        <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
-            <img src={logo} alt="" className='logo-image'/>
-        <input
-            {...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i })}
-            type="email"
-            placeholder="Электронная почта"
-            className='login-input-field'
-        />
-        <div className="password-input-wrapper">
+    <div className='main'>
+      <div className='image-block-wrapper'>
+        <img src={logo} alt="" className='logo-image'/>
+        <h1 className='image-block-title'>Lordby</h1>
+        <h3 className='image-block-subtitle'>Твой личный репетитор</h3>
+      </div>
+      <div className='login-form-wrapper'>
+          <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
+          <h3 className='form-title'>Вэлком бэк!</h3>
           <input
-              {...register('password', { required: true })}
-              type={passwordVisible ? "text" : "password"}
-              placeholder="Пароль"
-              className='password-input-field'
+              {...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i })}
+              type="email"
+              placeholder="Электронная почта"
+              className='login-input-field'
           />
-          <img 
-                  onClick={togglePasswordVisibility} 
-                  src={passwordVisible ? eyeOpen : eyeClosed} 
-                  alt="Toggle Password" 
-                  className="toggle-password-visibility"
-          />
-        </div>
-        {errors.email && errors.password && <p>Поля не должны быть пустыми</p>}
-        <Link to="/password-recovery" className='recovery-password-link'>Забыли пароль?</Link>
-        <button type="submit" className='form-button' disabled={isDisabled}>Войти</button>
-        <Link to="/signup" className='signup-link'>Начать пользоваться</Link>
-        </form>
+          <div className="password-input-wrapper">
+            <input
+                {...register('password', { required: true })}
+                type={passwordVisible ? "text" : "password"}
+                placeholder="Пароль"
+                className='password-input-field'
+            />
+            <img 
+                    onClick={togglePasswordVisibility} 
+                    src={passwordVisible ? eyeOpen : eyeClosed} 
+                    alt="Toggle Password" 
+                    className="toggle-password-visibility"
+            />
+          </div>
+          {errors.email && errors.password && <p>Поля не должны быть пустыми</p>}
+          <button type="submit" className='form-button' disabled={isDisabled}>Войти</button>
+          <Link to="/signup" className='signup-link'>Начать пользоваться</Link>
+          </form>
+      </div>
     </div>
   );
 }
