@@ -6,10 +6,10 @@ function ModalEmailMessage({ show, onClose }) {
 
     return (
         <div className='modal-overlay'>
-            <div className='modal-content'>
-                <h3>Мы выслали еще одно письмо<br /> на указанную тобой почту <br />example@gmail.com</h3>
-                <h4>Не забудь проверить <br />ящик “Спам”!!!!</h4>
-                <button className="form-button" onClick={onClose}>Понятно</button>
+            <div className='modal-email-content'>
+                <h3 className='modal-email-title'>Мы выслали еще одно письмо<br /> на указанную тобой почту <br />example@gmail.com</h3>
+                <h4 className='modal-email-subtitle'>Не забудь проверить <br />ящик “Спам”!!!!</h4>
+                <button className="form-button close" onClick={onClose}>Понятно</button>
             </div>
         </div>
     );

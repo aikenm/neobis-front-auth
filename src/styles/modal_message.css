@@ -1,3 +1,5 @@
+/* Email modal */
+
 .modal-overlay {
     position: fixed;
     z-index: 1000;
@@ -13,26 +15,88 @@
     backdrop-filter: blur(5px);
   }
   
-  .modal-content{
+  .modal-email-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: white;
     text-align: center;
-    padding: 50px;
+    padding: 40px 50px;
     border-radius: 40px;
-    font-size: 19px;
-    width: 400px;
     background-color: #fff;
   }
 
-  .modal p {
-    margin-bottom: 40px;
+  .modal-email-title {
+    font-weight: 300;
+    font-size: 20px;
+    margin-top: 0;
   }
 
-  .email {
-    color: #5e5fee;
+  .modal-email-subtitle {
+    font-weight: 300;
+    font-size: 16px;
+    color: #767676;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .close {
+    width: 311px;
+    height: 50px;
+  }
+
+
+  /* Log out modal */
+
+  .modal-log-out-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    text-align: center;
+    padding: 40px;
+    border-radius: 40px;
+    font-size: 19px;
+    width: 310px;
+    background-color: #fff;
+  }
+
+  .modal-log-out-title {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .modal-log-out-subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    color: #767676;
+  }
+
+  .confirm {
+    width: 311px;
+    height: 50px;
+    border-radius: 12px;
+    margin-bottom: 5px;
+  }
+
+  .confirm:hover {
+    scale: 0.98;
+  }
+
+  .cancel {
+    width: 311px;
+    height: 50px;
+    border-radius: 12px;
+    background-color: #fff;
+    color: black;
+  }
+
+  .cancel:hover {
+    color: #fff;
+    scale: 0.98;
   }
 
   

@@ -53,7 +53,7 @@ function SignupPasswordForm() {
                 <h3 className='image-block-subtitle'>Твой личный репетитор</h3>
             </div>
             <div className='signup-form-wrapper'>
-                <Link to="/" className='back-button'>
+                <Link to="/login" className='back-button'>
                     <img src={arrow} alt="back" className='arrow-icon'/>
                     <span className='arrow-text'>Назад</span>
                 </Link>
@@ -68,14 +68,14 @@ function SignupPasswordForm() {
                         placeholder="Email"
                         className='input-field'
                     />
-                    {errors.email && <p className='email-error-message'>Неправильный email</p>}
+                    {errors.email && <p className='error-message'>Неправильный email</p>}
                     <input 
                         {...register('login', { required: true })}
                         type="text"
                         placeholder="Логин"
                         className='input-field'
                     />
-                    {errors.login && <p className='login-error-message'>Введите логин</p>}
+                    {errors.login && <p className='error-message'>Введите логин</p>}
                     <div className="password-input-wrapper">
                         <input {...register('password', { 
                                 required: true,
@@ -122,7 +122,7 @@ function SignupPasswordForm() {
                             className="toggle-password-visibility"
                         />
                     </div>
-                    {errors.password_repeat && <p className='password-error-message'>{errors.password_repeat.message}</p>}
+                    {errors.password_repeat && <p className='error-message'>Повторите пароль</p>}
                     <button type="submit" className='signup-form-button form-button' disabled={!allCriteriaMet}>Далее</button>
                 </form>
             </div>

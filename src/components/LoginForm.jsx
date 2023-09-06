@@ -38,8 +38,8 @@ function LoginForm() {
                 <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
                     <h3 className='form-title'>Вэлком бэк!</h3>
                     <input
-                        {...register('login', { required: true })} // Here, instead of email, it's "login"
-                        type="text" // Changed from "email" to "text"
+                        {...register('login', { required: true })} 
+                        type="text" 
                         placeholder="Введи туда-сюда логин"
                         className='input-field'
                     />

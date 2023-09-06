@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
-import ModalEmailMessage from './ModalEmailMessage'; // Ensure the path is correct
+import ModalEmailMessage from './ModalEmailMessage'; 
 import logo from '../images/logo.jpg';
 import arrow from "../images/arrow.jpg";
 
@@ -11,8 +11,7 @@ function SignupConfirmationForm() {
     const [showModal, setShowModal] = useState(false);
 
     const resendConfirmation = () => {
-        // Here, you would ideally call the API to resend the confirmation email.
-        // For now, we'll directly open the modal after this action.
+        // TODO
         setShowModal(true);
     };
 
@@ -33,9 +32,9 @@ function SignupConfirmationForm() {
                 </h3>
                 <h3 className='confirmation-block-subtitle'>
                     Если письмо не пришло, не<br /> спеши ждать совиную почту - <br />лучше 
-                    <span className='colored-text'>проверь ящик “Спам” <br /><br />(´｡• ω •｡`)</span>
+                    <span className='colored-text'> проверь ящик “Спам” <br /><br />(´｡• ω •｡`)</span>
                 </h3>
-                <button onClick={resendConfirmation} className='form-button'>Письмо не пришло</button>
+                <button onClick={resendConfirmation} className='confirmation-button'>Письмо не пришло</button>
             </div>
             
             <ModalEmailMessage show={showModal} onClose={() => setShowModal(false)} />

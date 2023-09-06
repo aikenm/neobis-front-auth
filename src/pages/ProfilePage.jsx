@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileForm from '../components/ProfileForm';
 
-function LoginPage({}) {
+function ProfilePage({}) {
     return (
         <div>
             <ProfileForm />
@@ -9,4 +9,4 @@ function LoginPage({}) {
     );
 }
 
-export default LoginPage;
+export default ProfilePage;
