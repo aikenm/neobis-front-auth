@@ -23,12 +23,26 @@ function SignupPasswordForm() {
     });
 
     const [passwordVisible, setPasswordVisible] = useState(true);
+    const [passwordRepeatFocused, setPasswordRepeatFocused] = useState(false);
+    const [btnClicked, setBtnClicked] = useState(false);
+
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(prevVisible => !prevVisible);
     };
 
     const allCriteriaMet = Object.values(criteria).every(value => value === true);
+
+    const onSubmit = (data) => {
+        setBtnClicked(true);
+        setTimeout(() => {
+            setBtnClicked(false);
+        }, 1000);
+        console.log(data);
+        localStorage.setItem("signupEmail", data.email);
+        // TODO: Send the data to the API
+        navigate('/confirmation');
+    };
 
     useEffect(() => {
         setCriteria({
@@ -38,12 +52,6 @@ function SignupPasswordForm() {
             hasSpecialChar: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password),
         });
     }, [password]);
-
-    const onSubmit = (data) => {
-        console.log(data);
-        // TODO: Send the data to the API
-        navigate('/confirmation');
-    };
 
     return (
         <div className='main'>
@@ -61,14 +69,17 @@ function SignupPasswordForm() {
                     <h2 className='form-title'>Создать аккаунт<br />Lorby</h2>
                     <input 
                         {...register('email', { 
-                            required: true, 
-                            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i 
+                            required: "Введите email", 
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                message: "Неправильный email" 
+                            }
                         })}
-                        type="email"
+                        type="text"
                         placeholder="Email"
                         className='input-field'
                     />
-                    {errors.email && <p className='error-message'>Неправильный email</p>}
+                    {errors.email && <p className='error-message'>{errors.email.message}</p>}
                     <input 
                         {...register('login', { required: true })}
                         type="text"
@@ -81,14 +92,15 @@ function SignupPasswordForm() {
                                 required: true,
                                 minLength: {
                                     value: 8,
-                                    message: "Пароль должен содержать не менее 8 символов"
                                 },
                                 maxLength: {
                                     value: 15,
-                                    message: "Пароль должен содержать не более 15 символов"
                                 }
                             })} 
                             type={passwordVisible ? "text" : "password"} 
+                            style={{
+                                color: !allCriteriaMet && passwordRepeatFocused ? 'red' : 'black',
+                            }}
                             placeholder="Придумайте пароль" 
                             className='password-input-field'
                         />
@@ -101,19 +113,22 @@ function SignupPasswordForm() {
                     </div>
                     {errors.password && <p className='password-error-message'>{errors.password.message}</p>}
                     <div className="password-criteria">
-                        <p className={criteria.length ? 'valid-text' : ''}><span className='point'>•</span>От 8 до 15 символов</p>
-                        <p className={criteria.hasUppercase ? 'valid-text' : ''}><span className='point'>•</span>Строчные и прописные буквы</p>
-                        <p className={criteria.hasNumber ? 'valid-text' : ''}><span className='point'>•</span>Минимум 1 цифра</p>
-                        <p className={criteria.hasSpecialChar ? 'valid-text' : ''}><span className='point'>•</span>Минимум 1 спецсимвол (!, ", #, $...)</p>
+                        <p className={criteria.length ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>От 8 до 15 символов</p>
+                        <p className={criteria.hasUppercase ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Строчные и прописные буквы</p>
+                        <p className={criteria.hasNumber ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Минимум 1 цифра</p>
+                        <p className={criteria.hasSpecialChar ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Минимум 1 спецсимвол (!, ", #, $...)</p>
                     </div>
                     <div className="password-input-wrapper">
-                        <input {...register('password_repeat', {
-                                required: true,
-                                validate: value => value === password || "Пароли не совпадают"
+                        <input 
+                            {...register('password_repeat', {
+                                required: "Повторите пароль",
+                                validate: value => 
+                                    value === password || "Пароли не совпадают"
                             })} 
                             type={passwordVisible ? "text" : "password"}
                             placeholder="Повторите пароль" 
                             className='password-input-field'
+                            onFocus={() => setPasswordRepeatFocused(true)}
                         />
                         <img 
                             onClick={togglePasswordVisibility} 
@@ -122,7 +137,7 @@ function SignupPasswordForm() {
                             className="toggle-password-visibility"
                         />
                     </div>
-                    {errors.password_repeat && <p className='error-message'>Повторите пароль</p>}
+                    {errors.password_repeat && <p className='error-message'>{errors.password_repeat.message}</p>}
                     <button type="submit" className='signup-form-button form-button' disabled={!allCriteriaMet}>Далее</button>
                 </form>
             </div>

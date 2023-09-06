@@ -9,6 +9,7 @@ import arrow from "../images/arrow.jpg";
 
 function SignupConfirmationForm() {
     const [showModal, setShowModal] = useState(false);
+    const [userEmail, setUserEmail] = useState(localStorage.getItem("signupEmail") || "");
 
     const resendConfirmation = () => {
         // TODO
@@ -28,7 +29,7 @@ function SignupConfirmationForm() {
             </div>
             <div className='confirmation-form-wrapper'>
                 <h3 className='confirmation-block-title'>
-                    Выслали письмо со ссылкой для<br /> завершения регистрации на <br />example@gmail.com
+                    Выслали письмо со ссылкой для<br /> завершения регистрации на <br />{userEmail}
                 </h3>
                 <h3 className='confirmation-block-subtitle'>
                     Если письмо не пришло, не<br /> спеши ждать совиную почту - <br />лучше 
@@ -36,7 +37,6 @@ function SignupConfirmationForm() {
                 </h3>
                 <button onClick={resendConfirmation} className='confirmation-button'>Письмо не пришло</button>
             </div>
-            
             <ModalEmailMessage show={showModal} onClose={() => setShowModal(false)} />
         </div>
     );
