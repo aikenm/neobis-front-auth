@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import '../styles/modal_message.css';
 
 function ModalEmailMessage({ show, onClose }) {
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("signupEmail") || "");
-    if (!show) return null;
+  const [userEmail] = useState(localStorage.getItem("signupEmail") || "");
+  if (!show) return null;
 
     return (
         <div className='modal-overlay'>

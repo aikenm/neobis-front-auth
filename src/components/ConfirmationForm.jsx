@@ -7,9 +7,9 @@ import ModalEmailMessage from './ModalEmailMessage';
 import logo from '../images/logo.jpg';
 import arrow from "../images/arrow.jpg";
 
-function SignupConfirmationForm() {
+function ConfirmationForm() {
     const [showModal, setShowModal] = useState(false);
-    const [userEmail, setUserEmail] = useState(localStorage.getItem("signupEmail") || "");
+    const [userEmail] = useState(localStorage.getItem("signupEmail") || "");
 
     const resendConfirmation = () => {
         // TODO
@@ -42,4 +42,4 @@ function SignupConfirmationForm() {
     );
 }
 
-export default SignupConfirmationForm;
+export default ConfirmationForm;

@@ -10,7 +10,7 @@ import arrow from "../images/arrow.jpg";
 import eyeOpen from '../images/eye-open.png';
 import eyeClosed from '../images/eye-closed.png';
 
-function SignupPasswordForm() {
+function SignupForm() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
@@ -45,6 +45,7 @@ function SignupPasswordForm() {
     
             if (response.status === 200) {
                 console.log(response);
+                console.log(localStorage);
                 navigate('/confirmation');
             }
         } catch (error) {
@@ -57,7 +58,7 @@ function SignupPasswordForm() {
             length: password.length >= 8 && password.length <= 15,
             hasUppercase: /[A-Z]/.test(password),
             hasNumber: /[0-9]/.test(password),
-            hasSpecialChar: /[!@#$%^&*()_+={};`~':"\\/[|,.<>?-]+/.test(password)
+            hasSpecialChar: /[!@#$%^&{*()_+=};`~':"\\/[|,.<>?-]+/.test(password)
 
         });
     }, [password]);
@@ -154,4 +155,4 @@ function SignupPasswordForm() {
     );
 }
 
-export default SignupPasswordForm;
+export default SignupForm;

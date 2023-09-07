@@ -6,11 +6,13 @@ import '../styles/core.css';
 import logo from '../images/logo.jpg';
 import ModalSignOutMessage from './ModalSignOutMessage';
 
-function SignupProfileForm() {
+function ProfileForm() {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const navigate = useNavigate();
 
     const handleLogoutConfirm = () => {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('signupEmail');
         navigate('/');
     };
 
@@ -30,4 +32,4 @@ function SignupProfileForm() {
     );
 }
 
-export default SignupProfileForm;
+export default ProfileForm;
