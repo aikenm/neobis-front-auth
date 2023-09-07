@@ -4,8 +4,10 @@ import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
 import ModalEmailMessage from './ModalEmailMessage'; 
-import logo from '../images/logo.jpg';
-import arrow from "../images/arrow.jpg";
+// import logo from '../images/logo.jpg';
+import logo from '../images/logo.pdf';
+// import arrow from '../images/arrow.jpg';
+import arrow from '../images/arrow.pdf';
 
 function ConfirmationForm() {
     const [showModal, setShowModal] = useState(false);
@@ -29,7 +31,7 @@ function ConfirmationForm() {
             </div>
             <div className='confirmation-form-wrapper'>
                 <h3 className='confirmation-block-title'>
-                    Выслали письмо со ссылкой для<br /> завершения регистрации на <br />{userEmail}
+                    Выслали письмо со ссылкой для<br /> завершения регистрации на <br /><span className='user-email'>{userEmail}</span>
                 </h3>
                 <h3 className='confirmation-block-subtitle'>
                     Если письмо не пришло, не<br /> спеши ждать совиную почту - <br />лучше 

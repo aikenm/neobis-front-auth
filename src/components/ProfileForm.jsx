@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
-import logo from '../images/logo.jpg';
+// import logo from '../images/logo.jpg';
+import logo from '../images/logo.pdf';
 import ModalSignOutMessage from './ModalSignOutMessage';
 
 function ProfileForm() {

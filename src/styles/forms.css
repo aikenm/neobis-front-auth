@@ -97,9 +97,9 @@
     opacity: 0;
     position: absolute;
     top: 5%;
-    border: 1px solid #EC0000;
+    border: 1.5px solid #EC0000;
     color: #EC0000;
-    padding: 10px 30px;
+    padding: 12px 40px;
     border-radius: 12px;
     font-size: 13px;
     z-index: 10;
@@ -189,6 +189,7 @@
 
 .back-button:hover {
     scale: 1.08;
+    color: #3e40a5;
 }
 
 .arrow-text {
@@ -242,6 +243,10 @@
 
 .confirmation-button:hover {
     scale: 1.1;
+    color: #3e40a5;
+}
+
+.user-email {
     color: #3e40a5;
 }
 

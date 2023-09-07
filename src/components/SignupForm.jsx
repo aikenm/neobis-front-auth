@@ -5,8 +5,10 @@ import axios from 'axios';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
-import logo from '../images/logo.jpg';
-import arrow from "../images/arrow.jpg";
+// import logo from '../images/logo.jpg';
+import logo from '../images/logo.pdf';
+// import arrow from '../images/arrow.jpg';
+import arrow from '../images/arrow.pdf';
 import eyeOpen from '../images/eye-open.png';
 import eyeClosed from '../images/eye-closed.png';
 
@@ -58,7 +60,7 @@ function SignupForm() {
             length: password.length >= 8 && password.length <= 15,
             hasUppercase: /[A-Z]/.test(password),
             hasNumber: /[0-9]/.test(password),
-            hasSpecialChar: /[!@#$%^&{*()_+=};`~':"\\/[|,.<>?-]+/.test(password)
+            hasSpecialChar: /[!@#$%^&*()_+={}};`~':"\\/[|,.<>?-]+/.test(password)
 
         });
     }, [password]);
@@ -109,7 +111,7 @@ function SignupForm() {
                             })} 
                             type={passwordVisible ? "text" : "password"} 
                             style={{
-                                color: !allCriteriaMet && passwordRepeatFocused ? 'red' : 'black',
+                                color: !allCriteriaMet && passwordRepeatFocused ? '#EC0000' : 'black',
                             }}
                             placeholder="Придумайте пароль" 
                             className='password-input-field'
