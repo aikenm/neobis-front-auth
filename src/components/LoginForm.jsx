@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
@@ -17,6 +18,8 @@ function LoginForm() {
     
     const watchedLogin = watch('login', ''); 
     const watchedPassword = watch('password', '');
+
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(prevVisible => !prevVisible);
@@ -51,14 +54,44 @@ function LoginForm() {
         }, 1000); 
     };
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // TODO: Check login credentials here
-        // Simulating a failed login for now
-        handleLoginFailure();
-    };
-
     const isFormInvalid = !watchedLogin || !watchedPassword || errors.login || errors.password;
+
+
+    const onSubmit = (data) => {
+      axios.post("https://neobis-project.up.railway.app/api/auth/log", {
+          login: data.login,    
+          password: data.password
+      }, {
+          headers: {
+              'accept': '*/*',
+              'Content-Type': 'application/json'
+          }
+      })
+      .then(response => {
+          console.log(response.data);
+          navigate('/profile');
+      })
+      .catch(error => {
+          if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+                
+                if (error.response.status) {
+                    handleLoginFailure();
+                }
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in Node.js
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', error.message);
+            }
+            console.log(error.config);
+      });
+    };
 
     return (
       <div className='main'>
@@ -90,7 +123,7 @@ function LoginForm() {
                       className="toggle-password-visibility"
                   />
               </div>
-                  {errors.login && errors.password && <p>Поля не должны быть пустыми</p>}
+                  {errors.login && errors.password && <p className='error-message'>Поля не должны быть пустыми</p>}
                   {showTooltip && <div className="tooltip show">Неверный логин или пароль</div>}
                   <button 
                       type="submit" 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
@@ -33,15 +34,30 @@ function SignupPasswordForm() {
 
     const allCriteriaMet = Object.values(criteria).every(value => value === true);
 
-    const onSubmit = (data) => {
+    const onSubmit = async (formData) => {
         setBtnClicked(true);
         setTimeout(() => {
             setBtnClicked(false);
         }, 1000);
-        console.log(data);
-        localStorage.setItem("signupEmail", data.email);
-        // TODO: Send the data to the API
-        navigate('/confirmation');
+    
+        // Store email in local storage
+        localStorage.setItem("signupEmail", formData.email);
+    
+        try {
+            const response = await axios.post('https://neobis-project.up.railway.app/api/auth/register', {
+                login: formData.login,
+                email: formData.email,
+                password: formData.password
+            });
+    
+            if (response.status === 200) {
+                // Handle successful registration, e.g., navigate to another page
+                navigate('/confirmation');
+            }
+        } catch (error) {
+            console.error("Error registering user:", error);
+            // Handle any errors that occurred during registration
+        }
     };
 
     useEffect(() => {
