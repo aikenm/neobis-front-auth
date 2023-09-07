@@ -99,14 +99,14 @@ function LoginForm() {
               <input
                   {...register('login', { required: true })} 
                   type="text" 
-                  placeholder="Введи туда-сюда логин"
+                  placeholder="Введите логин"
                   className='input-field'
               />
               <div className="password-input-wrapper">
                   <input
                       {...register('password', { required: true })}
                       type={passwordVisible ? "text" : "password"}
-                      placeholder="Пароль (тоже введи)"
+                      placeholder="Пароль"
                       className='password-input-field'
                   />
                   <img

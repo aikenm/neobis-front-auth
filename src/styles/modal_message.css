@@ -83,7 +83,7 @@
   }
 
   .confirm:hover {
-    scale: 0.98;
+    scale: 0.95;
   }
 
   .cancel {
@@ -96,7 +96,7 @@
 
   .cancel:hover {
     color: #fff;
-    scale: 0.98;
+    scale: 0.95;
   }
 
   

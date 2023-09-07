@@ -88,14 +88,14 @@ function SignupForm() {
                             }
                         })}
                         type="text"
-                        placeholder="Email"
+                        placeholder="Введите адрес почты"
                         className='input-field'
                     />
                     {errors.email && <p className='error-message'>{errors.email.message}</p>}
                     <input 
                         {...register('login', { required: true })}
                         type="text"
-                        placeholder="Логин"
+                        placeholder="Придумайте логин"
                         className='input-field'
                     />
                     {errors.login && <p className='error-message'>Введите логин</p>}
