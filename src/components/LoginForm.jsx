@@ -72,6 +72,7 @@ function LoginForm() {
           if (response.data && response.data.token) {
               console.log(response);
               localStorage.setItem('authToken', response.data.token);
+              console.log(localStorage);
           }
   
           navigate('/profile');
