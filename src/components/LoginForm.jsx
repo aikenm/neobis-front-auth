@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -57,40 +57,31 @@ function LoginForm() {
     const isFormInvalid = !watchedLogin || !watchedPassword || errors.login || errors.password;
 
 
-    const onSubmit = (data) => {
-      axios.post("https://neobis-project.up.railway.app/api/auth/log", {
-          login: data.login,    
-          password: data.password
-      }, {
-          headers: {
-              'accept': '*/*',
-              'Content-Type': 'application/json'
+    const onSubmit = async (data) => {
+      try {
+          const response = await axios.post("https://neobis-project.up.railway.app/api/auth/log", {
+              login: data.login,
+              password: data.password
+          }, {
+              headers: {
+                  'accept': '*/*',
+                  'Content-Type': 'application/json'
+              }
+          });
+  
+          if (response.data && response.data.token) {
+              console.log(response);
+              localStorage.setItem('authToken', response.data.token);
           }
-      })
-      .then(response => {
-          console.log(response.data);
+  
           navigate('/profile');
-      })
-      .catch(error => {
-          if (error.response) {
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-                
-                if (error.response.status) {
-                    handleLoginFailure();
-                }
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in Node.js
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log('Error', error.message);
-            }
-            console.log(error.config);
-      });
+  
+      } catch (error) {
+          console.error("Error during login:", error.message || error);
+          if (error.response && error.response.status) {
+              handleLoginFailure();
+          }
+      }
     };
 
     return (

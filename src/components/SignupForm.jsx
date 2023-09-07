@@ -25,7 +25,6 @@ function SignupPasswordForm() {
 
     const [passwordVisible, setPasswordVisible] = useState(true);
     const [passwordRepeatFocused, setPasswordRepeatFocused] = useState(false);
-    const [btnClicked, setBtnClicked] = useState(false);
 
 
     const togglePasswordVisibility = () => {
@@ -34,29 +33,22 @@ function SignupPasswordForm() {
 
     const allCriteriaMet = Object.values(criteria).every(value => value === true);
 
-    const onSubmit = async (formData) => {
-        setBtnClicked(true);
-        setTimeout(() => {
-            setBtnClicked(false);
-        }, 1000);
-    
-        // Store email in local storage
-        localStorage.setItem("signupEmail", formData.email);
+    const onSubmit = async (data) => {
+        localStorage.setItem("signupEmail", data.email);
     
         try {
             const response = await axios.post('https://neobis-project.up.railway.app/api/auth/register', {
-                login: formData.login,
-                email: formData.email,
-                password: formData.password
+                login: data.login,
+                email: data.email,
+                password: data.password
             });
     
             if (response.status === 200) {
-                // Handle successful registration, e.g., navigate to another page
+                console.log(response);
                 navigate('/confirmation');
             }
         } catch (error) {
             console.error("Error registering user:", error);
-            // Handle any errors that occurred during registration
         }
     };
 
@@ -65,7 +57,8 @@ function SignupPasswordForm() {
             length: password.length >= 8 && password.length <= 15,
             hasUppercase: /[A-Z]/.test(password),
             hasNumber: /[0-9]/.test(password),
-            hasSpecialChar: /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password),
+            hasSpecialChar: /[!@#$%^&*()_+={};`~':"\\/[|,.<>?-]+/.test(password)
+
         });
     }, [password]);
 
