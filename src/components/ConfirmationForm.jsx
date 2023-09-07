@@ -34,8 +34,8 @@ function ConfirmationForm() {
                     Выслали письмо со ссылкой для<br /> завершения регистрации на <br /><span className='user-email'>{userEmail}</span>
                 </h3>
                 <h3 className='confirmation-block-subtitle'>
-                    Если письмо не пришло, не<br /> спеши ждать совиную почту - <br />лучше 
-                    <span className='colored-text'> проверь ящик “Спам” <br /><br />(´｡• ω •｡`)</span>
+                    Если письмо не пришло, не<br /> спешите ждать совиную почту - <br />лучше 
+                    <span className='colored-text'> проверьте ящик "Спам" <br /><br />(´｡• ω •｡`)</span>
                 </h3>
                 <button onClick={resendConfirmation} className='confirmation-button'>Письмо не пришло</button>
             </div>

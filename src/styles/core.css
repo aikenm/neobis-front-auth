@@ -14,3 +14,75 @@ body {
     justify-content: center; 
     align-items: center; 
 }
+
+
+@media (max-width: 968px) {
+    .main {
+        display: inline;
+        justify-content: center; 
+        align-items: center;
+    }
+    
+    .image-block-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    .logo-image {
+        width: 300px;
+        height: auto;
+        padding-top: 50px;
+    }
+
+    .image-block-title {
+        font-size: 0;
+    }
+
+    .image-block-subtitle {
+        font-size: 0;
+    }
+
+    .login-form-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-form-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 80px;
+    }
+
+    .back-button {
+        top: 5%;
+        left: 5%;
+    }
+
+    .confirmation-form-wrapper {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .confirmation-block-title {
+        font-size: 22px;
+    }
+
+    .confirmation-block-subtitle {
+        font-size: 18px;
+    }
+
+}
