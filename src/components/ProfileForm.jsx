@@ -11,7 +11,7 @@ function SignupProfileForm() {
     const navigate = useNavigate();
 
     const handleLogoutConfirm = () => {
-        navigate('/signup');
+        navigate('/');
     };
 
     return (

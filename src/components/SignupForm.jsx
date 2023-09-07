@@ -77,7 +77,7 @@ function SignupPasswordForm() {
                 <h3 className='image-block-subtitle'>Твой личный репетитор</h3>
             </div>
             <div className='signup-form-wrapper'>
-                <Link to="/login" className='back-button'>
+                <Link to="/" className='back-button'>
                     <img src={arrow} alt="back" className='arrow-icon'/>
                     <span className='arrow-text'>Назад</span>
                 </Link>
