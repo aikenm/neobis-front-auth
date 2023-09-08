@@ -101,7 +101,6 @@ function SignupForm() {
                     {errors.login && <p className='error-message'>Введите логин</p>}
                     <div className="password-input-wrapper">
                         <input {...register('password', { 
-                                required: true,
                                 minLength: {
                                     value: 8,
                                 },
@@ -123,7 +122,6 @@ function SignupForm() {
                             className="toggle-password-visibility"
                         />
                     </div>
-                    {errors.password && <p className='password-error-message'>{errors.password.message}</p>}
                     <div className="password-criteria">
                         <p className={criteria.length ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>От 8 до 15 символов</p>
                         <p className={criteria.hasUppercase ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Строчные и прописные буквы</p>

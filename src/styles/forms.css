@@ -34,8 +34,9 @@
 }
 
 .password-input-wrapper {
+    display: flex;
     position: relative;
-    display: inline-block;
+    justify-content: center;
     width: 100%; 
 }
 
@@ -66,6 +67,9 @@
 }
 
 .form-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 357px;
     height: 60px;
     border: 1px solid transparent;
@@ -75,7 +79,7 @@
     background-color: black;
     cursor: pointer;
     color: #fff;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, scale 0.3s ease,;
 }
 
 .login-form-button {
@@ -120,7 +124,7 @@
     width: 320px;
     height: 40px;
     color: black;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, scale 0.3s ease;
     font-size: 15px;
 }
 
@@ -241,7 +245,7 @@
     border: none;
     cursor: pointer;
     margin-top: 40px;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, scale 0.3s ease;
 }
 
 .confirmation-button:hover {
@@ -287,7 +291,7 @@
     cursor: pointer;
     margin-top: 40px;
     background: none;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, scale 0.3s ease;
 }
 
 .log-out-button:hover {

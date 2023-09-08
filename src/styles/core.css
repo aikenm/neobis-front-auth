@@ -22,6 +22,8 @@ body {
         justify-content: center; 
         align-items: center;
     }
+
+    /* Image block */
     
     .image-block-wrapper {
         display: flex;
@@ -35,7 +37,7 @@ body {
     .logo-image {
         width: 300px;
         height: auto;
-        padding-top: 50px;
+        padding-top: 100px;
     }
 
     .image-block-title {
@@ -46,13 +48,31 @@ body {
         font-size: 0;
     }
 
+    /* Login form */
+
     .login-form-wrapper {
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: center;
         align-items: center;
+        margin-top: -40px;
     }
+
+    .form-button {
+        margin-top: 20px;
+    }
+
+    .signup-link {
+        margin-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .tooltip {
+        top: 3%;
+    }
+
+    /* Signup form */
 
     .signup-form-wrapper {
         display: flex;
@@ -68,13 +88,15 @@ body {
         left: 5%;
     }
 
+    /* Confirmation form */
+
     .confirmation-form-wrapper {
         display: flex;
         width: 100%;
         height: 100%;
         justify-content: center;
         align-items: center;
-        margin-top: 10px;
+        margin-top: -30px;
     }
 
     .confirmation-block-title {
@@ -85,4 +107,29 @@ body {
         font-size: 18px;
     }
 
+    .confirmation-button {
+        margin: 15px;
+        margin-bottom: 40px;
+    }
+
+    .log-out-button {
+        margin-bottom: 40px;
+    }
+
+    /* Profile form */
+
+    .profile-block-wrapper {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        text-align: center;
+    }
+
+    .profile-block-title {
+        margin-top: 160px;
+    }
+    
+    .profile-block-subtitle {
+        margin-bottom: -50px;
+    }
 }

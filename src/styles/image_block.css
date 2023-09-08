@@ -9,20 +9,16 @@
 }
 
 .logo-image {
-    /* width: 480px;
-    height: 510px; */
     width: 28vw;
 }
 
 .image-block-title {
     margin: 0;
     margin-top: 30px;
-    /* font-size: 38px; */
     font-size: 2.8vmax;
 }
 
 .image-block-subtitle {
-    /* font-size: 24px; */
     font-size: 1.5vmax;
     font-weight: 300;
     margin-top: 5px;
