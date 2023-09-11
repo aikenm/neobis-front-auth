@@ -18,7 +18,7 @@ You can make a quick view here on **Netlify:** https://aiken-neobis-front-auth.n
 
   Signup Page offers an intuitive registration process. Upon landing, users are met with four distinct input fields: an email field for account correspondence, a login field to set their unique username, a password field for security, and a subsequent password confirmation field to ensure accuracy. The design prioritizes clarity, guiding new users through each step towards creating their Lordby account efficiently.
 
-  - **Strong password criterias:**
+- **Strong password criterias:**
 
   To ensure user account security, Lordby enforces stringent password guidelines. Users are prompted to create a password that adheres to the following criteria:
 
