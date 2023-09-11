@@ -1,6 +1,6 @@
-# neobis-front-auth
+## neobis-front-auth
 
-# Auth
+# Lordby's Authentication System
 
 ## Project Description
 
