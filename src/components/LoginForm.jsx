@@ -1,62 +1,70 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import '../styles/image_block.css';
-import '../styles/forms.css';
-import '../styles/core.css';
-// import logo from '../images/logo.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { 
+  setPasswordVisibility, 
+  setButtonText, 
+  setShowTooltip, 
+  setLoginFailed, 
+  setAuthToken 
+} from '../store/userSlice';
 import logo from '../images/logo.pdf';
 import eyeOpen from '../images/eye-open.png';
 import eyeClosed from '../images/eye-closed.png';
+import '../styles/image_block.css';
+import '../styles/forms.css';
+import '../styles/core.css';
 
 function LoginForm() {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [passwordVisible, setPasswordVisible] = useState(true);
-    const [buttonText, setButtonText] = useState("Войти");
-    const [showTooltip, setShowTooltip] = useState(false);
-    const [loginFailed, setLoginFailed] = useState(false);
-    
-    const watchedLogin = watch('login', ''); 
-    const watchedPassword = watch('password', '');
+  const dispatch = useDispatch();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-    const navigate = useNavigate();
+  const passwordVisible = useSelector(state => state.user.passwordVisible);
+  const buttonText = useSelector(state => state.user.buttonText);
+  const showTooltip = useSelector(state => state.user.showTooltip);
+  const loginFailed = useSelector(state => state.user.loginFailed);
 
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(prevVisible => !prevVisible);
-    };
+  const watchedLogin = watch('login', '');
+  const watchedPassword = watch('password', '');
 
-    const handleLoginFailure = () => {
-        setLoginFailed(true);
-        setShowTooltip(true);
-    
-        setTimeout(() => {
-            const tooltipElem = document.querySelector('.tooltip');
-            if (tooltipElem) {
-                tooltipElem.classList.remove('show');
-                setTimeout(() => {
-                    setShowTooltip(false);
-                }, 300); 
-            }
-        }, 5000); 
+  const navigate = useNavigate();
 
-        setButtonText("Повторите через 10");
-        let seconds = 10;
+  const togglePasswordVisibility = () => {
+    dispatch(setPasswordVisibility(!passwordVisible));  
+  };
 
-        const interval = setInterval(() => {
-            seconds--;
-            setButtonText(`Повторите через ${seconds}`);
+  const handleLoginFailure = () => {
+    dispatch(setLoginFailed(true));
+    dispatch(setShowTooltip(true));
 
-            if (seconds <= 0) {
-                clearInterval(interval);
-                setLoginFailed(false);
-                setButtonText("Войти");
-            }
-        }, 1000); 
-    };
+    setTimeout(() => {
+        const tooltipElem = document.querySelector('.tooltip');
+        if (tooltipElem) {
+            tooltipElem.classList.remove('show');
+            setTimeout(() => {
+                dispatch(setShowTooltip(false)); 
+            }, 300); 
+        }
+    }, 5000); 
+
+    dispatch(setButtonText("Повторите через 10"));
+    let seconds = 10;
+
+    const interval = setInterval(() => {
+        seconds--;
+        dispatch(setButtonText(`Повторите через ${seconds}`)); 
+
+        if (seconds <= 0) {
+            clearInterval(interval);
+            dispatch(setLoginFailed(false));
+            dispatch(setButtonText("Войти")); 
+        }
+    }, 1000); 
+};
 
     const isFormInvalid = !watchedLogin || !watchedPassword || errors.login || errors.password;
-
 
     const onSubmit = async (data) => {
       try {
@@ -71,14 +79,13 @@ function LoginForm() {
           });
   
           if (response.data && response.data.token) {
-              console.log(response);
-              localStorage.setItem('authToken', response.data.token);
-              console.log(localStorage);
+            dispatch(setAuthToken(response.data.token)); 
           }
-  
+      
+          console.log(localStorage);
           navigate('/profile');
   
-      } catch (error) {
+        } catch (error) {
           console.error("Error during login:", error.message || error);
           if (error.response && error.response.status) {
               handleLoginFailure();

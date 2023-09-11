@@ -1,7 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { hideLogoutModal } from '../store/userSlice';  
 import '../styles/modal_message.css';
 
-function ModalSignOutMessage({ show, onConfirm, onCancel }) {
+function ModalSignOutMessage({ onConfirm }) {
+    const dispatch = useDispatch();
+    const show = useSelector(state => state.user.showLogoutModal);  
+
+    const handleClose = () => {
+        dispatch(hideLogoutModal());  
+    };
+
     if (!show) return null;
 
     return (
@@ -10,8 +19,11 @@ function ModalSignOutMessage({ show, onConfirm, onCancel }) {
                 <h4 className='modal-log-out-title'>Выйти?</h4>
                 <h5 className='modal-log-out-subtitle'>Точно выйти?</h5>
                 <div className='modal-log-out-buttons'>
-                    <button className='form-button confirm' onClick={onConfirm}>Да, точно</button>
-                    <button className='form-button cancel' onClick={onCancel}>Нет, остаться</button>
+                    <button className='form-button confirm' onClick={() => {
+                        onConfirm();
+                        handleClose();
+                    }}>Да, точно</button>
+                    <button className='form-button cancel' onClick={handleClose}>Нет, остаться</button>
                 </div>
             </div>
         </div>

@@ -23,7 +23,7 @@ body {
         align-items: center;
     }
 
-    /* Image block */
+    /* Image form */
     
     .image-block-wrapper {
         display: flex;
@@ -37,7 +37,7 @@ body {
     .logo-image {
         width: 300px;
         height: auto;
-        padding-top: 100px;
+        padding-top: 90px;
     }
 
     .image-block-title {
@@ -69,7 +69,7 @@ body {
     }
 
     .tooltip {
-        top: 3%;
+        top: 2.7%;
     }
 
     /* Signup form */
@@ -131,5 +131,21 @@ body {
     
     .profile-block-subtitle {
         margin-bottom: -50px;
+    }
+
+    /* Email resend modal window */
+
+    .close {
+        margin: 0;
+    }
+
+    /* Log-out modal window */
+
+    .confirm {
+        margin: 0;
+    }
+
+    .cancel {
+        margin: 0;
     }
 }

@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
-import ModalEmailMessage from './ModalEmailMessage'; 
-// import logo from '../images/logo.jpg';
+import ModalEmailMessage from './ModalEmailMessage';
 import logo from '../images/logo.pdf';
-// import arrow from '../images/arrow.jpg';
 import arrow from '../images/arrow.pdf';
+
+// TODO resendConfirmationEmail
+// import { resendConfirmationEmail } from '../store/authSlice'; 
 
 function ConfirmationForm() {
     const [showModal, setShowModal] = useState(false);
-    const [userEmail] = useState(localStorage.getItem("signupEmail") || "");
+    
+    const userEmail = localStorage.getItem('userEmail');
+
+    //const dispatch = useDispatch(); 
 
     const resendConfirmation = () => {
         // TODO
+
         setShowModal(true);
     };
 
