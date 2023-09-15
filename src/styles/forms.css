@@ -28,9 +28,13 @@
     margin-bottom: 15px;
     border-radius: 10px;
     border: 1px solid transparent;
-    outline: none;
     font-size: 14px;
+    outline: none;
     background-color: #f7f7f8;
+}
+
+.input-field:focus {
+    border: 1px solid black; 
 }
 
 .password-input-wrapper {
@@ -51,6 +55,10 @@
     outline: none;
     font-size: 14px;
     background-color: #f7f7f8;
+}
+
+.password-input-field:focus {
+    border: 1px solid black; 
 }
 
 .toggle-password-visibility {
