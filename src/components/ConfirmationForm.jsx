@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; 
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { showEmailResendModal, hideEmailResendModal } from '../store/userSlice';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
@@ -11,17 +14,31 @@ import arrow from '../images/arrow.pdf';
 // import { resendConfirmationEmail } from '../store/authSlice'; 
 
 function ConfirmationForm() {
-    const [showModal, setShowModal] = useState(false);
-    
+    const showModal = useSelector(state => state.user.showModal);
+    const dispatch = useDispatch();
     const userEmail = localStorage.getItem('userEmail');
-
-    //const dispatch = useDispatch(); 
+    const navigate = useNavigate();
 
     const resendConfirmation = () => {
         // TODO
-
-        setShowModal(true);
+        dispatch(showEmailResendModal());  
     };
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            try {
+                const response = await axios.get('https://neobis-project.up.railway.app/api/auth/confirm');
+                if (response.status === 200) { 
+                    clearInterval(interval);  
+                    navigate('/');
+                }
+            } catch (error) {
+                console.error("Error checking email confirmation:", error);
+            }
+        }, 4000);  
+
+        return () => clearInterval(interval); 
+    }, [navigate, dispatch]);
 
     return (
         <div className='main'>
@@ -44,7 +61,7 @@ function ConfirmationForm() {
                 </h3>
                 <button onClick={resendConfirmation} className='confirmation-button'>Письмо не пришло</button>
             </div>
-            <ModalEmailMessage show={showModal} onClose={() => setShowModal(false)} />
+            <ModalEmailMessage show={showModal} onClose={() => dispatch(hideEmailResendModal())} />
         </div>
     );
 }

@@ -3,10 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     isAuthenticated: !!localStorage.getItem('authToken'),
     passwordVisible: true,
+    passwordRepeatFocused: false,
+    criteria: {
+        length: false,
+        hasUppercase: false,
+        hasNumber: false,
+        hasSpecialChar: false
+    },
     buttonText: "Войти",
     showTooltip: false,
     loginFailed: false,
     authToken: localStorage.getItem('authToken') || null,
+    showModal: false,
     showLogoutModal: false
 };
 
@@ -33,6 +41,18 @@ export const userSlice = createSlice({
                 state.isAuthenticated = true;
             }
         },
+        setCriteria: (state, action) => {
+            state.criteria = action.payload;
+        },
+        togglePasswordRepeatFocused: (state) => {
+            state.passwordRepeatFocused = !state.passwordRepeatFocused;
+        },
+        showEmailResendModal: (state) => {
+            state.showModal = true;
+        },
+        hideEmailResendModal: (state) => {
+            state.showModal = false;
+        },
         showLogoutModal: (state) => {
             state.showLogoutModal = true;
         },
@@ -53,6 +73,10 @@ export const {
     setShowTooltip,
     setLoginFailed,
     setAuthToken,
+    setCriteria,
+    togglePasswordRepeatFocused,
+    showEmailResendModal,
+    hideEmailResendModal,
     showLogoutModal,
     hideLogoutModal,
     logout

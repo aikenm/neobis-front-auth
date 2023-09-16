@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    setPasswordVisibility,
+    setCriteria,
+    togglePasswordRepeatFocused
+} from '../store/userSlice';  
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
@@ -12,25 +18,18 @@ import eyeClosed from '../images/eye-closed.png';
 
 function SignupForm() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-
     const navigate = useNavigate();
-
+    
     const password = watch("password", "");
-
-    const [criteria, setCriteria] = useState({
-        length: false,
-        hasUppercase: false,
-        hasNumber: false,
-        hasSpecialChar: false
-    });
-
-    const [passwordVisible, setPasswordVisible] = useState(true);
-    const [passwordRepeatFocused, setPasswordRepeatFocused] = useState(false);
-
-    const togglePasswordVisibility = () => {
-        setPasswordVisible(prevVisible => !prevVisible);
-    };
-
+    const repeatPassword = watch("password_repeat", "");
+    
+    const {
+        criteria,
+        passwordVisible,
+        passwordRepeatFocused
+    } = useSelector(state => state.user);
+    const dispatch = useDispatch();
+    
     const allCriteriaMet = Object.values(criteria).every(value => value === true);
 
     const onSubmit = async (data) => {
@@ -51,13 +50,13 @@ function SignupForm() {
     };
 
     useEffect(() => {
-        setCriteria({
+        dispatch(setCriteria({
             length: password.length >= 8 && password.length <= 15,
             hasUppercase: /[A-Z]/.test(password),
             hasNumber: /[0-9]/.test(password),
             hasSpecialChar: /[!@#$%^&*()_+={}};`~':"\\/[|,.<>?-]+/.test(password)
-        });
-    }, [password]);
+        }));
+    }, [password, dispatch]);
 
     return (
         <div className='main'>
@@ -110,17 +109,17 @@ function SignupForm() {
                             className='password-input-field'
                         />
                         <img 
-                            onClick={togglePasswordVisibility} 
+                            onClick={() => dispatch(setPasswordVisibility(!passwordVisible))} 
                             src={passwordVisible ? eyeOpen : eyeClosed} 
                             alt="Toggle Password" 
                             className="toggle-password-visibility"
                         />
                     </div>
                     <div className="password-criteria">
-                        <p className={criteria.length ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>От 8 до 15 символов</p>
-                        <p className={criteria.hasUppercase ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Строчные и прописные буквы</p>
-                        <p className={criteria.hasNumber ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Минимум 1 цифра</p>
-                        <p className={criteria.hasSpecialChar ? 'valid-text' : (!allCriteriaMet && passwordRepeatFocused) ? 'invalid-text' : ''}><span className='point'>•</span>Минимум 1 спецсимвол (!, ", #, $...)</p>
+                        <p className={criteria.length ? 'valid-text' : (!allCriteriaMet && (passwordRepeatFocused || repeatPassword)) ? 'invalid-text' : ''}><span className='point'>•</span>От 8 до 15 символов</p>
+                        <p className={criteria.hasUppercase ? 'valid-text' : (!allCriteriaMet && (passwordRepeatFocused || repeatPassword)) ? 'invalid-text' : ''}><span className='point'>•</span>Строчные и прописные буквы</p>
+                        <p className={criteria.hasNumber ? 'valid-text' : (!allCriteriaMet && (passwordRepeatFocused || repeatPassword)) ? 'invalid-text' : ''}><span className='point'>•</span>Минимум 1 цифра</p>
+                        <p className={criteria.hasSpecialChar ? 'valid-text' : (!allCriteriaMet && (passwordRepeatFocused || repeatPassword)) ? 'invalid-text' : ''}><span className='point'>•</span>Минимум 1 спецсимвол (!, ", #, $...)</p>
                     </div>
                     <div className="password-input-wrapper">
                         <input 
@@ -132,10 +131,10 @@ function SignupForm() {
                             type={passwordVisible ? "text" : "password"}
                             placeholder="Повторите пароль" 
                             className='password-input-field'
-                            onFocus={() => setPasswordRepeatFocused(true)}
+                            onFocus={() => dispatch(togglePasswordRepeatFocused(true))}
                         />
                         <img 
-                            onClick={togglePasswordVisibility} 
+                            onClick={() => dispatch(setPasswordVisibility(!passwordVisible))} 
                             src={passwordVisible ? eyeOpen : eyeClosed} 
                             alt="Toggle Password" 
                             className="toggle-password-visibility"
@@ -146,7 +145,7 @@ function SignupForm() {
                 </form>
             </div>
         </div>
-    );
+    );    
 }
 
 export default SignupForm;
