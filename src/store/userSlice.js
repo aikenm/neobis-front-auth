@@ -47,6 +47,7 @@ export const userSlice = createSlice({
         togglePasswordRepeatFocused: (state) => {
             state.passwordRepeatFocused = !state.passwordRepeatFocused;
         },
+        resetUserState: (state) => initialState,
         showEmailResendModal: (state) => {
             state.showModal = true;
         },
@@ -74,6 +75,7 @@ export const {
     setLoginFailed,
     setAuthToken,
     setCriteria,
+    resetUserState,
     togglePasswordRepeatFocused,
     showEmailResendModal,
     hideEmailResendModal,

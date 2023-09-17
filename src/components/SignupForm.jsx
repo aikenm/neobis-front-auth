@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
     setPasswordVisibility,
     setCriteria,
-    togglePasswordRepeatFocused
+    togglePasswordRepeatFocused,
+    resetUserState
 } from '../store/userSlice';  
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
-import logo from '../images/logo.pdf';
-import arrow from '../images/arrow.pdf';
+import logo from '../images/logo.svg';
+import arrow from '../images/arrow.svg';
 import eyeOpen from '../images/eye-open.png';
 import eyeClosed from '../images/eye-closed.png';
 
@@ -41,7 +42,11 @@ function SignupForm() {
             });
 
             if (response.status === 200) {
+                const confirmationToken = response.data.token;  
+                console.log(response.data.token);
+                localStorage.setItem('confirmationToken', confirmationToken);
                 localStorage.setItem('userEmail', data.email);
+                
                 navigate('/confirmation');
             }
         } catch (error) {
@@ -57,6 +62,12 @@ function SignupForm() {
             hasSpecialChar: /[!@#$%^&*()_+={}};`~':"\\/[|,.<>?-]+/.test(password)
         }));
     }, [password, dispatch]);
+    
+    useEffect(() => {
+        return () => {
+            dispatch(resetUserState());
+        };
+    }, [dispatch]);
 
     return (
         <div className='main'>
@@ -103,7 +114,7 @@ function SignupForm() {
                             })} 
                             type={passwordVisible ? "text" : "password"} 
                             style={{
-                                color: !allCriteriaMet && passwordRepeatFocused ? '#EC0000' : 'black',
+                                color: (!allCriteriaMet && (passwordRepeatFocused || repeatPassword)) ? '#EC0000' : 'black',
                             }}
                             placeholder="Придумайте пароль" 
                             className='password-input-field'
@@ -132,6 +143,10 @@ function SignupForm() {
                             placeholder="Повторите пароль" 
                             className='password-input-field'
                             onFocus={() => dispatch(togglePasswordRepeatFocused(true))}
+                            onBlur={() => dispatch(togglePasswordRepeatFocused(false))}
+                            style={{
+                                color: errors.password_repeat ? '#EC0000' : 'black',
+                            }}
                         />
                         <img 
                             onClick={() => dispatch(setPasswordVisibility(!passwordVisible))} 

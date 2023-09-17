@@ -10,7 +10,7 @@ import {
   setLoginFailed, 
   setAuthToken 
 } from '../store/userSlice';
-import logo from '../images/logo.pdf';
+import logo from '../images/logo.svg';
 import eyeOpen from '../images/eye-open.png';
 import eyeClosed from '../images/eye-closed.png';
 import '../styles/image_block.css';

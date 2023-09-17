@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
-import logo from '../images/logo.pdf';
+import logo from '../images/logo.svg';
 import ModalSignOutMessage from './ModalSignOutMessage';
 import { useDispatch, useSelector } from 'react-redux';
 import { showLogoutModal, hideLogoutModal, logout } from '../store/userSlice';

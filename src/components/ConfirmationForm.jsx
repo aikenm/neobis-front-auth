@@ -7,11 +7,8 @@ import '../styles/image_block.css';
 import '../styles/forms.css';
 import '../styles/core.css';
 import ModalEmailMessage from './ModalEmailMessage';
-import logo from '../images/logo.pdf';
-import arrow from '../images/arrow.pdf';
-
-// TODO resendConfirmationEmail
-// import { resendConfirmationEmail } from '../store/authSlice'; 
+import logo from '../images/logo.svg';
+import arrow from '../images/arrow.svg';
 
 function ConfirmationForm() {
     const showModal = useSelector(state => state.user.showModal);
@@ -20,22 +17,30 @@ function ConfirmationForm() {
     const navigate = useNavigate();
 
     const resendConfirmation = () => {
-        // TODO
+        // TODO (waiting for backend teammate)
         dispatch(showEmailResendModal());  
     };
 
     useEffect(() => {
         const interval = setInterval(async () => {
+            const confirmationToken = localStorage.getItem('confirmationToken'); 
+            const url = `https://neobis-project.up.railway.app/api/auth/confirm?token=${confirmationToken}`;
+
             try {
-                const response = await axios.get('https://neobis-project.up.railway.app/api/auth/confirm');
+                const response = await axios.get(url, {
+                    headers: {
+                        'accept': '*/*'
+                    }
+                });
                 if (response.status === 200) { 
                     clearInterval(interval);  
+                    console.log(response);
                     navigate('/');
                 }
             } catch (error) {
                 console.error("Error checking email confirmation:", error);
             }
-        }, 4000);  
+        }, 3000);  
 
         return () => clearInterval(interval); 
     }, [navigate, dispatch]);

@@ -34,7 +34,9 @@
 }
 
 .input-field:focus {
-    border: 1px solid black; 
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.39);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.39); 
 }
 
 .password-input-wrapper {
@@ -59,7 +61,9 @@
 }
 
 .password-input-field:focus {
-    border: 1px solid black; 
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.39);
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.39);
 }
 
 .toggle-password-visibility {
@@ -192,7 +196,6 @@
     margin-left: 5px;
     font-size: 12px;
     color: #EC0000;
-    transition: color 1s ease;
 }
 
 .back-button {
