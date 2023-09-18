@@ -23,17 +23,13 @@ function ConfirmationForm() {
 
     useEffect(() => {
         const interval = setInterval(async () => {
-            const confirmationToken = localStorage.getItem('confirmationToken'); 
-            const url = `https://neobis-project.up.railway.app/api/auth/confirm?token=${confirmationToken}`;
-
+            const conToken = localStorage.getItem('conToken'); 
+            const url = `http://neobis-project.up.railway.app/api/auth/confirm?conToken=${conToken}`;
+    
             try {
-                const response = await axios.get(url, {
-                    headers: {
-                        'accept': '*/*'
-                    }
-                });
+                const response = await axios.get(url); 
                 if (response.status === 200) { 
-                    clearInterval(interval);  
+                    clearInterval(interval);
                     console.log(response);
                     navigate('/');
                 }
@@ -41,9 +37,10 @@ function ConfirmationForm() {
                 console.error("Error checking email confirmation:", error);
             }
         }, 3000);  
-
+    
         return () => clearInterval(interval); 
     }, [navigate, dispatch]);
+    
 
     return (
         <div className='main'>

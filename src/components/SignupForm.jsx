@@ -42,9 +42,10 @@ function SignupForm() {
             });
 
             if (response.status === 200) {
-                const confirmationToken = response.data.token;  
+                console.log(response);
+                const conToken = response.data.token;  
                 console.log(response.data.token);
-                localStorage.setItem('confirmationToken', confirmationToken);
+                localStorage.setItem('conToken', conToken);
                 localStorage.setItem('userEmail', data.email);
                 
                 navigate('/confirmation');
