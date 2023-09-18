@@ -27,9 +27,7 @@ function ConfirmationForm() {
                 }
             });
             dispatch(showEmailResendModal());
-            if (response.status === 200) {
-                dispatch(showEmailResendModal()); 
-            }
+            console.log(response.status);
         } catch (error) {
             console.error("Error resending confirmation:", error);
         }
