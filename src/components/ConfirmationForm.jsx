@@ -18,7 +18,7 @@ function ConfirmationForm() {
 
     const resendConfirmation = async (userEmail) => {
         try {
-            const response = await axios.post('http://neobis-project.up.railway.app/api/auth/resend-confirmation', {
+            const response = await axios.post('https://neobis-project.up.railway.app/api/auth/resend-confirmation', {
                 email: userEmail
             }, {
                 headers: {
@@ -39,7 +39,7 @@ function ConfirmationForm() {
         const interval = setInterval(async () => {
             try {
                 const userName = localStorage.getItem('userName');
-                const url = `http://neobis-project.up.railway.app/api/auth/enabled?username=${userName}`; 
+                const url = `https://neobis-project.up.railway.app/api/auth/enabled?username=${userName}`; 
                 const response = await axios.get(url);
     
                 console.log(response);
