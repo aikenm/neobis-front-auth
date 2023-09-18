@@ -42,12 +42,9 @@ function SignupForm() {
             });
 
             if (response.status === 200) {
-                console.log(response);
-                const conToken = response.data.token;  
-                console.log(response.data.token);
-                localStorage.setItem('conToken', conToken);
+                localStorage.setItem('userName', data.login);
                 localStorage.setItem('userEmail', data.email);
-                
+                console.log(localStorage);
                 navigate('/confirmation');
             }
         } catch (error) {

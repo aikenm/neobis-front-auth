@@ -16,19 +16,33 @@ function ConfirmationForm() {
     const userEmail = localStorage.getItem('userEmail');
     const navigate = useNavigate();
 
-    const resendConfirmation = () => {
-        // TODO (waiting for backend teammate)
-        dispatch(showEmailResendModal());  
+    const resendConfirmation = async (userEmail) => {
+        try {
+            const response = await axios.post('https://neobis-project.up.railway.app/api/auth/resend-confirmation', {
+                email: userEmail
+            }, {
+                headers: {
+                    'accept': '*/*',
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            console.log(response.data);
+            dispatch(showEmailResendModal()); 
+        } catch (error) {
+            console.error("Error resending confirmation:", error);
+        }
     };
 
     useEffect(() => {
         const interval = setInterval(async () => {
-            const conToken = localStorage.getItem('conToken'); 
-            const url = `http://neobis-project.up.railway.app/api/auth/confirm?conToken=${conToken}`;
-    
             try {
-                const response = await axios.get(url); 
-                if (response.status === 200) { 
+                const userName = localStorage.getItem('userName');
+                const url = `http://neobis-project.up.railway.app/api/auth/enabled?username=${userName}`; 
+                const response = await axios.get(url);
+    
+                console.log(response);
+                if (response.status === 200 && response.data === 1) { 
                     clearInterval(interval);
                     console.log(response);
                     navigate('/');
@@ -61,7 +75,7 @@ function ConfirmationForm() {
                     Если письмо не пришло, не<br /> спешите ждать совиную почту - <br />лучше 
                     <span className='colored-text'> проверьте ящик "Спам" <br /><br />(´｡• ω •｡`)</span>
                 </h3>
-                <button onClick={resendConfirmation} className='confirmation-button'>Письмо не пришло</button>
+                <button onClick={() => resendConfirmation(userEmail)} className='confirmation-button'>Письмо не пришло</button>
             </div>
             <ModalEmailMessage show={showModal} onClose={() => dispatch(hideEmailResendModal())} />
         </div>
