@@ -26,7 +26,7 @@ function ConfirmationForm() {
                     'Content-Type': 'application/json'
                 }
             });
-    
+            dispatch(showEmailResendModal());
             if (response.status === 200) {
                 dispatch(showEmailResendModal()); 
             }
