@@ -18,7 +18,7 @@ function ConfirmationForm() {
 
     const resendConfirmation = async (userEmail) => {
         try {
-            const response = await axios.post('https://neobis-project.up.railway.app/api/auth/resend-confirmation', {
+            const response = await axios.post('http://neobis-project.up.railway.app/api/auth/resend-confirmation', {
                 email: userEmail
             }, {
                 headers: {
@@ -27,8 +27,9 @@ function ConfirmationForm() {
                 }
             });
     
-            console.log(response.data);
-            dispatch(showEmailResendModal()); 
+            if (response.status === 200) {
+                dispatch(showEmailResendModal()); 
+            }
         } catch (error) {
             console.error("Error resending confirmation:", error);
         }
